@@ -4,7 +4,7 @@ import "./App.css";
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+//import thunk from 'redux-thunk';
 
 import Home from "./components/Home/home";
 import Login from "./components/Login/login";

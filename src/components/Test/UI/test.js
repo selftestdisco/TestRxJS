@@ -10,9 +10,9 @@ import {
 //import { fetchUser } from '../Actions/epics';
 
 class Test extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     onClick = () => {
         this.props.handleGetUsers();
     }
