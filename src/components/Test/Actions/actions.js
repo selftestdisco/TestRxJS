@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INCREMENT, DECREASE, FETCH_USER_FAILED, FETCH_USER_SUCCESS, FETCH_USER } from "./actionTypes";
+import { INCREMENT, DECREASE, FETCH_USER_FAILED, FETCH_USER_SUCCESS, FETCH_USER, FETCH_GIT_USER, FETCH_GIT_USER_SUCCESS } from "./actionTypes";
 
 export function incrementAction() {
   return {
@@ -17,6 +17,19 @@ export function getData() {
   return {
     type: FETCH_USER
   };
+}
+
+export function getGitData() {
+  return {
+    type : FETCH_GIT_USER
+  };
+}
+
+export const getGitDataSuccess = (data) => {
+  return {
+    type : FETCH_GIT_USER_SUCCESS,
+    data: data
+  }
 }
 
 export const getDataSuccess = (data) => {
