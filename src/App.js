@@ -21,7 +21,7 @@ function App() {
   return (
     <Provider store = {createStore(
       addReducer,
-      {value : 0, userData: {}, gitUserData: {}},
+      {value : 0, userData: {}, gitUserData: {}, addedGitUser: {}},
       applyMiddleware(epicMiddleware))}>
         {epicMiddleware.run(epics)}
     <Router>
