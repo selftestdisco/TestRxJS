@@ -13,13 +13,13 @@ jobs:
         cat << EOF >>compare.py
         import sys
         version1 = sys.argv[1]
-        print version1
+        print(version1)
         version2 = sys.argv[2]
         class Solution:
             def compareVersion(self, version1: str, version2: str) -> int:
                 nums1 = version1.split('.')
                 nums2 = version2.split('.')
-                print nums1
+                print(nums1)
                 n1, n2 = len(nums1), len(nums2)
 
                 # compare versions
