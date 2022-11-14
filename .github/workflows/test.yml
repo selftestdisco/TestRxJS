@@ -29,6 +29,6 @@ jobs:
                 # the versions are equal
                 return 0 
         EOF
-        cat compare.py
-        python compare.py 2.0.1 2.1.1 > ans
-        cat ans
+
+        python compare.py 2.0.1 2.1.1 > ans.txt
+        cat ans.txt
