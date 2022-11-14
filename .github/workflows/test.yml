@@ -18,6 +18,7 @@ jobs:
         class Solution:
             def compareVersion(self, version1: str, version2: str) -> int:
                 nums1 = version1.split('.')
+                print("Deepak: ",nums1)
                 nums2 = version2.split('.')
                 print(nums1)
                 n1, n2 = len(nums1), len(nums2)
