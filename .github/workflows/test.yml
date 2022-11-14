@@ -5,13 +5,28 @@ jobs:
   initiator:
     runs-on: ubuntu-latest
     steps:
-    - name: Repository Dispatch
+    - name: Setup Python
+      uses: actions/setup-python@v4.3.0
+    - name: compare version
       run: |
-        cat  <<EOF >>brightup.sh
-        verlte() { [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ] }
-        verlt() { [ "$1" = "$2" ] && return 1 || verlte $1 $2 }
-        verlte 2.5.7 2.5.6 && echo "yes" || echo "no"
+        cat << EOF >>compare.py
+        import sys
+        sys.argv[1]=version1
+        sys.argv[2]+version2
+        class Solution:
+            def compareVersion(self, version1: str, version2: str) -> int:
+                nums1 = version1.split('.')
+                nums2 = version2.split('.')
+                n1, n2 = len(nums1), len(nums2)
+
+                # compare versions
+                for i in range(max(n1, n2)):
+                    i1 = int(nums1[i]) if i < n1 else 0
+                    i2 = int(nums2[i]) if i < n2 else 0
+                    if i1 != i2:
+                        return 1 if i1 > i2 else -1
+
+                # the versions are equal
+                return 0 
         EOF
-        cat brightup.sh
-        chmod +x brightup.sh
-        sh brightup.sh
+        cat compare.py
