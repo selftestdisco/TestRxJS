@@ -8,8 +8,8 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4.3.0
     - name: compare version
-      run: |
-        python3 --version
+      run:   python3 --version
+    - run: |
         cat << EOF >>compare.py
         import sys
         version1=sys.argv[1]
@@ -31,5 +31,5 @@ jobs:
                 return 0 
         EOF
 
-        python compare.py 2.0.1 2.1.1 > ans.txt
-        cat ans.txt
+    - run:   python compare.py 2.0.1 2.1.1 > ans.txt
+    - run: cat ans.txt
