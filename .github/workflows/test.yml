@@ -54,7 +54,7 @@ jobs:
 
         EOF
 
-    - run:   python3 compare.py "2.5.1" "2.1.1" > ans.txt
+    - run:   python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` "2.1.1" > ans.txt
     - run: |
            cat ans.txt
        
