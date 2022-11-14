@@ -1,5 +1,7 @@
 name: Update Swagger UI
-on: [repository_dispatch]
+on:
+  repository_dispatch:
+    types: [my-event]
 jobs:
   updateSwagger:
     runs-on: ubuntu-latest
