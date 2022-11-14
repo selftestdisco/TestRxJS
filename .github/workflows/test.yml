@@ -30,4 +30,5 @@ jobs:
                 return 0 
         EOF
         cat compare.py
-        python compare.py 2.0.1 2.1.1
+        python compare.py 2.0.1 2.1.1 > ans
+        cat ans
