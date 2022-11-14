@@ -32,5 +32,6 @@ jobs:
         EOF
 
     - run:   python3 compare.py 2.0.1 2.1.1 > ans.txt
-    - run: cat ans.txt
+    - run: |
+           cat ans.txt
            echo Hello
