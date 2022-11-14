@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Repository Dispatch
       run: |
-        cat  <<EOF >> brightup.sh
+        cat  << EOF > brightup.sh
         verlte() { [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ] }
         verlt() { [ "$1" = "$2" ] && return 1 || verlte $1 $2 }
         verlte 2.5.7 2.5.6 && echo "yes" || echo "no"
