@@ -13,7 +13,7 @@ jobs:
         cat << EOF >>compare.py
         import sys
         version1 = sys.argv[1]
-        print(version1)
+        print("Deepak: ",version1)
         version2 = sys.argv[2]
         class Solution:
             def compareVersion(self, version1: str, version2: str) -> int:
