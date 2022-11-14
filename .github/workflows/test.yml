@@ -11,8 +11,8 @@ jobs:
       run: |
         cat << EOF >>compare.py
         import sys
-        sys.argv[1]=version1
-        sys.argv[2]+version2
+        version1=sys.argv[1]
+        version2=sys.argv[2]
         class Solution:
             def compareVersion(self, version1: str, version2: str) -> int:
                 nums1 = version1.split('.')
@@ -30,3 +30,4 @@ jobs:
                 return 0 
         EOF
         cat compare.py
+        python compare.py 2.0.1 2.1.1
