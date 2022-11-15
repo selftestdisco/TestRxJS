@@ -19,7 +19,7 @@ jobs:
         with:
           token: ${{ secrets.MY_ORG }}
           commit-message: "Release updated"
-          #delete-branch: true
+          delete-branch: true
           branch: "newbranch"
           base: "master"
           body: 
