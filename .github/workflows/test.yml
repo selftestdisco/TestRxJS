@@ -46,11 +46,11 @@ jobs:
 
         ans = versionCompare(version1, version2)
         if ans < 0:
-            print (version1 + " is smaller")
+            print ("True")
         elif ans > 0:
-            print (version2 + " is smaller")
+            print ("False")
         else:
-            print ("Both versions are equal")
+            print ("False")
 
         EOF
     - run: |
