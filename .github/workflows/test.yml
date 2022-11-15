@@ -14,7 +14,9 @@ jobs:
           git checkout -b newbranch
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
-      #- name: Update package.json
-        #run: sed 
+      - name: Update package.json
+        run: |
+          sed -i 's|"\version\": *,|\"version\": "\$newversion\",|' package.json
+          cat package.json
         
         
