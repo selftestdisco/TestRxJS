@@ -54,7 +54,7 @@ jobs:
 
         EOF
     - run: |
-        curl -H 'Authorization: token INSERTACCESSTOKENHERE' \
+        curl -H 'Authorization: token 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' \
         -H 'Accept: application/vnd.github.v3.raw' \
         -O \
         -L https://api.github.com/repos/selftestdisco/TestRxJS/blob/master/package.json
