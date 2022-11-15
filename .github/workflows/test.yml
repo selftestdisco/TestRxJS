@@ -55,9 +55,8 @@ jobs:
         EOF
     - run: |
         curl -H 'Authorization: token ${{ secrets.MY_ORG }}' \
-        -H 'Accept: application/vnd.github.v3.raw' \
         -o /tmp/package.json \
-        -L https://api.github.com/repos/selftestdisco/TestRxJS/package.json
+        https://raw.githubusercontent.com/selftestdisco/TestRxJS/master/package.json
         
         cat /tmp/package.json # |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'
         
