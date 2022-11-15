@@ -12,7 +12,7 @@ jobs:
       - name: create a branch
         run: |
           git checkout -b newbranch
-          newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }} "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
+          newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }} https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
       #- name: Update package.json
         #run: sed 
