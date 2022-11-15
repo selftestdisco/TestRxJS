@@ -15,6 +15,15 @@ jobs:
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
           sed  -i -e "/version\":/s/[0-9]*\.[0-9]*\.[0-9]*/${newversion}/" package.json
-          cat package.json
-        
-        
+          head -5 package.json
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4.2.0
+        with:
+          token: ${{ secrets.MY_ORG }}
+          commit-message: Release updated
+          delete-branch: 
+          branch: newbranch
+          
+          
+          
+           
