@@ -20,9 +20,10 @@ jobs:
         uses: peter-evans/create-pull-request@v4.2.0
         with:
           token: ${{ secrets.MY_ORG }}
-          commit-message: Release updated
+          commit-message: "Release updated"
           delete-branch: true
-          branch: newbranch
+          branch: "newbranch"
+          base: "master"
           
           
           
