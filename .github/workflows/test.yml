@@ -54,7 +54,7 @@ jobs:
 
         EOF
     - run: |
-        curl -H 'Authorization: token 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' \
+        curl -H 'Authorization: token ${{ secrets.MY_ORG }}' \
         -H 'Accept: application/vnd.github.v3.raw' \
         -o /tmp/package.json \
         -L https://api.github.com/repos/selftestdisco/TestRxJS/blob/master/package.json
