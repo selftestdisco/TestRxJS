@@ -56,10 +56,10 @@ jobs:
     - run: |
         curl -H 'Authorization: token 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' \
         -H 'Accept: application/vnd.github.v3.raw' \
-        -O \
+        -o /tmp/package.json \
         -L https://api.github.com/repos/selftestdisco/TestRxJS/blob/master/package.json
         
-        cat package.json | grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'
+        cat /tmp/package.json | grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'
         
     - run:   python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` `cat package.json | grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/' ` > ans.txt
     - run: |
