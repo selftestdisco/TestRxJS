@@ -16,7 +16,7 @@ jobs:
           echo $newversion
       - name: Update package.json
         run: |
-          sed -i 's|"\version\": *,|\"version\": "\$newversion\",|' package.json
+          sed -i 's|"\version\": "\*"\,|\"verson\": "\$newversion\",|' package.json
           cat package.json
         
         
