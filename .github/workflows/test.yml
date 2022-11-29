@@ -1,14 +1,28 @@
 name: comp version
-on: 
-   repository_dispatch:
-    types: [my-event]
-   
+on:
+   workflow_dispatch:
+   schedule:
+   - cron:  '30 5,17 * * *'
+      
 jobs:
   updateVersion:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: create a branch
+      - uses: actions/checkout@v3       
+      - id: ans
+        run: |
+          export arg1=`cat package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'`
+          echo $arg1
+          export arg2="`curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' `"
+          echo $arg2
+          python3 .github/cmpver.py  $arg1 $arg2  > ans.txt
+          cat ans.txt
+          echo "test=`python3 .github/cmpver.py $arg1 $arg2`"  >> $GITHUB_OUTPUT
+        
+      - run: echo ${{ steps.ans.outputs.test }}
+    
+      - if: ${{ steps.ans.outputs.test == 'Greater' }}
+        name: create a branch
         run: |
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
@@ -25,7 +39,3 @@ jobs:
           body: 
             To show PR
           title: "Auto PR"
-          
-          
-          
-           
