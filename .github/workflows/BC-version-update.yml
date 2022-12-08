@@ -1,0 +1,23 @@
+name: BC version update on PR merge
+
+on:
+  pull_request:
+    branches: 
+      - develop
+    types: [closed]
+
+jobs:
+  my-action:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+    # Checkouts the project
+    - uses: actions/checkout@v3
+      with:
+      
+    - run: |
+        perl -i -pe 's/-BC\K\d+/$&+1/ge' package.json
+        
+        
+  
+  
