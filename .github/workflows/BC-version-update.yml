@@ -14,10 +14,7 @@ jobs:
     # Checkouts the project
     - uses: actions/checkout@v3
       with:
-      
+        ref: develop
     - run: |
         perl -i -pe 's/-BC\K\d+/$&+1/ge' package.json
         
-        
-  
-  
