@@ -18,5 +18,5 @@ jobs:
     - run: |
         perl -i -pe 's/-BC\K\d+/$&+1/ge' package.json
         git commit -a -m "BC version update"
-        git push origin develop
+        #git push origin develop
         
