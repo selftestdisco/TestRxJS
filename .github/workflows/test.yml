@@ -29,13 +29,15 @@ jobs:
       - if: ${{ steps.ans.outputs.test == 'Greater' }}
         name: create a branch
         run: |
+          git checkout -b releaseVersionUpdate
+          git pull origin releaseVersionUpdate
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
           sed  -i -e "/version\":/s/[0-9]*\.[0-9]*\.[0-9]*/${newversion}/" package.json
           head -5 package.json
           
-          git pull origin releaseVersionUpdate
-          git checkout -b releaseVersionUpdate
+          
+          
           git branch
           git config user.name "random"
           git config user.email "random@example.com"
