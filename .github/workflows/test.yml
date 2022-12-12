@@ -30,6 +30,7 @@ jobs:
     
       - if: ${{ steps.ans.outputs.test == 'Greater' }}
         name: create a branch
+        continue-on-error: true
         run: |
           
           
