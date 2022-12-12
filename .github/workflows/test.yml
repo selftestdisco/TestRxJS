@@ -46,4 +46,4 @@ jobs:
           git add package.json
           git commit -m "Version update"
           git push origin releaseVersionUpdate
-          gh pr list
+          gh pr create -t "New PR" -b "Version Upgrade"
