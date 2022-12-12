@@ -30,6 +30,7 @@ jobs:
         name: create a branch
         run: |
           git checkout -b releaseVersionUpdate
+          rm -rf package.json
           git pull origin releaseVersionUpdate
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
