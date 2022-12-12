@@ -49,4 +49,4 @@ jobs:
           
       - name: Create PR
         run: |
-          gh pr create -t "New PR" -b "Version Upgrade" --B master -H releaseVersionUpdate
+          gh pr create -t "New PR" -b "Version Upgrade" -B master -H releaseVersionUpdate
