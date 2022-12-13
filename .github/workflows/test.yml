@@ -1,8 +1,8 @@
 name: comp version and create PR
 on:
    workflow_dispatch:
-   schedule:
-   - cron:  '30 5,17 * * *'
+   #schedule:
+   #- cron:  '30 5,17 * * *'
       
 jobs:
   updateVersion:
