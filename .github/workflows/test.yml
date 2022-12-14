@@ -1,6 +1,6 @@
 name: comp version and create PR
 on:
-   workflow_dispatch:
+   workflow_dispatch
    #schedule:
    #- cron:  '30 5,17 * * *'
       
@@ -11,34 +11,26 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v3       
-      
-      - name: Setup Python
-        uses: actions/setup-python@v4.3.0
       - id: ans
         run: |
-          git branch
-          echo ""
           export arg1=`cat package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'`
           echo $arg1
           export arg2="`curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' `"
           echo $arg2
-          python3 .github/cmpver.py  $arg1 $arg2  > ans.txt
-          cat ans.txt
+          
+          #Compare Versions       
           echo "test=`python3 .github/cmpver.py $arg1 $arg2`"  >> $GITHUB_OUTPUT
-        
-      - run: echo ${{ steps.ans.outputs.test }}
+          echo ${{ steps.ans.outputs.test }}
     
       - if: ${{ steps.ans.outputs.test == 'Greater' }}
         name: create a branch
-        #continue-on-error: true
         run: |
-          
-          
+          #Update package.json
           newversion=$(curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
           echo $newversion
           sed  -i -e "/version\":/s/[0-9]*\.[0-9]*\.[0-9]*/${newversion}/" package.json
-          head -5 package.json
           
+          #Push changes to remote 
           git push origin :releaseVersionUpdate
           git checkout -b releaseVersionUpdate
           git branch
@@ -47,4 +39,6 @@ jobs:
           git add package.json
           git commit -m "Version update"
           git push origin releaseVersionUpdate
+          
+          #Create PR
           gh pr create -t "New PR" -b "Version Upgrade" -B master -H releaseVersionUpdate
