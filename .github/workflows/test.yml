@@ -1,6 +1,6 @@
 name: comp version and create PR
 on:
-   workflow_dispatch
+   workflow_dispatch:
    #schedule:
    #- cron:  '30 5,17 * * *'
       
